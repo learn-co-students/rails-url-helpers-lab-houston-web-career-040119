@@ -6,6 +6,13 @@ class StudentsController < ApplicationController
   end
 
   def show
+
+  end
+
+  def active
+    @student = set_student
+    @student.active ? @student.update(active: false) : @student.update(active: true)
+    redirect_back fallback_location: { action: "show", id: @student.id }
   end
 
   private
